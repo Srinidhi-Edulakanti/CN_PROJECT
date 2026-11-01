@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111c37">
+  <meta name="description" content="A browser-based simulation of the LAN-Chat System.">
+  <title>LAN-Chat System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="simulation-ribbon"><span class="ribbon-dot" aria-hidden="true"></span> BROWSER SIMULATION <span class="ribbon-separator">·</span> Messages stay in this browser; no network connection is made.</div>
+
+  <main class="login-screen" id="loginScreen">
+    <section class="login-card" aria-labelledby="loginTitle">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M5 16.2 16 5l11 11.2L16 27 5 16.2Z" stroke="currentColor" stroke-width="2.4"/><path d="M11 16h10M16 11v10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </div>
+      <p class="eyebrow">LOCAL AREA NETWORK · CHAT</p>
+      <h1 id="loginTitle">LAN-Chat System</h1>
+      <p class="login-copy">A real-time chat experience, simulated entirely in this browser.</p>
+      <form id="loginForm" novalidate>
+        <label for="usernameInput">Your display name</label>
+        <div class="input-wrap"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.4-3.3 3.1-5.4 7-5.4s6.6 2.1 7 5.4"/></svg><input id="usernameInput" name="username" maxlength="20" autocomplete="nickname" placeholder="e.g. Alex Morgan" required></div>
+        <p class="field-hint">1–20 characters: letters, numbers, spaces, underscores, or hyphens.</p>
+        <p class="form-error" id="loginError" role="alert"></p>
+        <button class="button button-primary button-wide" type="submit">Enter chat <span aria-hidden="true">→</span></button>
+      </form>
+      <div class="login-foot"><span class="lock-icon" aria-hidden="true">◈</span> Sample data only <span class="foot-divider">·</span> No sign-up required</div>
+    </section>
+    <p class="page-credit">Built to showcase the LAN-Chat System project</p>
+  </main>
+
+  <main class="app-shell is-hidden" id="appShell">
+    <aside class="sidebar" id="sidebar" aria-label="Chats and people">
+      <div class="sidebar-brand"><span class="brand-small" aria-hidden="true">✣</span><span>LAN-<strong>Chat</strong></span><span class="simulation-chip">SIMULATED</span></div>
+      <div class="sidebar-section chat-section">
+        <p class="section-label">YOUR CHATS</p>
+        <button class="nav-item active" id="groupChatButton" type="button" data-chat="group"><span class="nav-icon group-icon" aria-hidden="true">#</span><span class="nav-copy"><strong>Group Chat</strong><small>Everyone in the room</small></span><span class="unread-dot is-hidden" id="groupUnread"></span></button>
+      </div>
+      <div class="sidebar-section people-section">
+        <div class="section-heading"><p class="section-label">ONLINE USERS</p><span class="user-count" id="onlineCount">0</span></div>
+        <div class="user-list" id="userList" aria-label="Online users"></div>
+      </div>
+      <div class="sidebar-bottom"><div class="privacy-note"><span aria-hidden="true">ⓘ</span><p>Browser simulation only. Messages are not sent over a network.</p></div><button class="profile-button" id="profileButton" type="button"><span class="avatar avatar-self" id="profileAvatar">Y</span><span class="profile-copy"><strong id="profileName">You</strong><small>Simulation participant</small></span><span class="profile-menu-icon" aria-hidden="true">···</span></button></div>
+    </aside>
+
+    <section class="chat-panel" aria-label="Conversation">
+      <header class="topbar"><button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open user list" aria-expanded="false"><span></span><span></span><span></span></button><div class="connection-state"><span class="status-indicator"></span><span>Browser simulation active</span></div><div class="topbar-actions"><span class="session-label"><span class="mini-shield" aria-hidden="true">◆</span> Browser-only session</span><button class="disconnect-button" id="disconnectButton" type="button"><span aria-hidden="true">↪</span> Leave chat</button></div></header>
+      <div class="chat-heading"><div class="chat-heading-icon" id="headingIcon" aria-hidden="true">#</div><div class="heading-copy"><h2 id="chatTitle">Group Chat</h2><p id="chatSubtitle">Messages are visible to everyone online</p></div><div class="heading-meta" id="headingMeta"><span class="status-indicator"></span><span id="metaText">5 people online</span></div></div>
+      <div class="conversation" id="conversation" aria-live="polite" aria-relevant="additions text"></div>
+      <div class="composer-area"><div class="composer" id="composer"><textarea id="messageInput" rows="1" maxlength="2000" placeholder="Write a message…" aria-label="Write a message"></textarea><div class="composer-tools"><span class="composer-hint"><kbd>Enter</kbd> to send <span class="hint-divider">·</span> <kbd>Shift + Enter</kbd> for a new line</span><button class="send-button" id="sendButton" type="button" aria-label="Send message"><span>Send</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 3-7.4 18-3.2-7.4L3 10.4 21 3Zm0 0L10.4 13.6"/></svg></button></div></div><p class="composer-note">Messages stay in this browser and are not sent over your network.</p></div>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+</body>
+</html>
